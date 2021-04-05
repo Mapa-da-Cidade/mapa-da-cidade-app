@@ -1,3 +1,4 @@
+import { ReportCardComponent } from './components/report-card/report-card.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,6 @@ import { ReportPageRoutingModule } from './report-routing.module';
     RouterModule.forChild([{ path: '', component: ReportPage }]),
     ReportPageRoutingModule,
   ],
-  declarations: [ReportPage]
+  declarations: [ReportPage, ReportCardComponent]
 })
 export class ReportPageModule { }

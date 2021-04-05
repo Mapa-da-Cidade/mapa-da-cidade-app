@@ -7,11 +7,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-        <ion-toolbar>
-            <ion-title size="large">Report</ion-title>
-        </ion-toolbar>
-    </ion-header>
-
-    <app-explore-container name="Report page"></app-explore-container>
+    <app-report-card title="Árvores em risco" description="Sinalizar uma árvore que precisa de poda"></app-report-card>
+    <app-report-card title="Árvores em risco" description="Sinalizar pontos de enchente"></app-report-card>
+    <app-report-card title="Roubo / Furto" description="Sinalizar áreas com alto índice de roubos e furtos">
+    </app-report-card>
+    <app-report-card title="Vias irregulares" description="Sinalizar ruas com buracos"></app-report-card>
+    <app-report-card title="Falta de Iluminação" description="Áreas sem iluminação"></app-report-card>
 </ion-content>
