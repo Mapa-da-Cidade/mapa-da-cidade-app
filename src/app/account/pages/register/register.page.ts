@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,9 @@ export class RegisterPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    ) { }
+    private firebaseAuth: AngularFireAuth,
+    private navigate: NavController
+  ) { }
 
   ngOnInit() {
     this.buildForm();
@@ -29,9 +33,18 @@ export class RegisterPage implements OnInit {
 
   submit() {
     this.form.markAllAsTouched();
-    
+
     if (this.form.invalid)
       return;
+
+    let email = this.form.controls.email.value;
+    let password = this.form.controls.password.value;
+
+    this.firebaseAuth.createUserWithEmailAndPassword(email, password).then(
+      () => {
+        this.navigate.navigateRoot('tabs');
+      })
+      .catch(() => { });
   }
-  
+
 }

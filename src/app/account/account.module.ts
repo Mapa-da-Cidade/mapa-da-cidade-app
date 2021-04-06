@@ -6,6 +6,7 @@ import { LoginPage } from './pages/login/login.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountRoutingModule } from './account-routing.module';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { AccountRoutingModule } from './account-routing.module';
     CommonModule,
     AccountRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireAuthModule
   ],
   declarations: [LoginPage, RegisterPage, ResetPasswordPage]
 })
