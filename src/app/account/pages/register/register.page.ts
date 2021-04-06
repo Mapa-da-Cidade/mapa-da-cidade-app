@@ -10,7 +10,9 @@ export class RegisterPage implements OnInit {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    ) { }
 
   ngOnInit() {
     this.buildForm();
