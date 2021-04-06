@@ -1,8 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-      <ion-title>
-          Register
-      </ion-title>
+    <ion-title>
+      Register
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,35 +10,49 @@
 
   <div class="flex">
 
-    <div class="title"> 
+    <div class="title">
       <h3>SEJA BEM VINDO!</h3>
       <h6>Realize seu cadastro</h6>
     </div>
 
     <div class="form">
-      
-      <!-- image -->
-      
-      <ion-item>
-        <ion-label position="floating">Usuário</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">E-mail</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Telefone</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
+      <form [formGroup]="form">
+
+        <!-- image -->
+
+        <ion-item>
+          <ion-label position="floating">Usuário</ion-label>
+          <ion-input formControlName="user"></ion-input>
+        </ion-item>
+        <span class="invalid" *ngIf="form.controls.user.invalid && form.controls.user.touched">
+          Campo obrigatório
+        </span>
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input formControlName="email"></ion-input>
+        </ion-item>
+        <span class="invalid" *ngIf="form.controls.email.invalid && form.controls.email.touched">
+          Campo obrigatório
+        </span>
+        <ion-item>
+          <ion-label position="floating">Telefone</ion-label>
+          <ion-input formControlName="cellPhone"></ion-input>
+        </ion-item>
+        <span class="invalid" *ngIf="form.controls.cellPhone.invalid && form.controls.cellPhone.touched">
+          Campo obrigatório
+        </span>
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input formControlName="password"></ion-input>
+        </ion-item>
+        <span class="invalid" *ngIf="form.controls.password.invalid && form.controls.password.touched">
+          Campo obrigatório
+        </span>
+      </form>
     </div>
 
     <div class="button">
-      <ion-button expand="block">Cadastrar</ion-button>
+      <ion-button expand="block" (click)="submit()">Cadastrar</ion-button>
     </div>
 
   </div>

@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ResetPasswordPage } from './pages/reset-password/reset-password.page';
 import { RegisterPage } from './pages/register/register.page';
@@ -11,6 +12,8 @@ import { AccountRoutingModule } from './account-routing.module';
     IonicModule,
     CommonModule,
     AccountRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [LoginPage, RegisterPage, ResetPasswordPage]
 })

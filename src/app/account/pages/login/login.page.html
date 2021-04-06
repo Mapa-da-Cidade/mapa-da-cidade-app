@@ -10,24 +10,32 @@
 
   <div class="flex">
 
-    <div class="title"> 
+    <div class="title">
       <h3>SEJA BEM VINDO!</h3>
       <h6>Realize login para continuar</h6>
     </div>
 
     <div class="form">
-      <ion-item>
-        <ion-label position="floating">Usuário</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
+      <form [formGroup]="form">
+        <ion-item>
+          <ion-label position="floating">Usuário</ion-label>
+          <ion-input formControlName="user"></ion-input>
+        </ion-item>
+        <span class="invalid" *ngIf="form.controls.user.invalid && form.controls.user.touched">
+          Campo obrigatório
+        </span>
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input formControlName="password"></ion-input>
+        </ion-item>
+        <span class="invalid" *ngIf="form.controls.password.invalid && form.controls.password.touched">
+          Campo obrigatório
+        </span>
+      </form>
     </div>
 
     <div class="button">
-      <ion-button expand="block">Entrar</ion-button>
+      <ion-button expand="block" (click)="submit()">Entrar</ion-button>
       <p class="text-center">Não possui uma conta? <a routerLink="/">Cadastre-se</a></p>
     </div>
 

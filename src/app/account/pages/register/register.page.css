@@ -22,3 +22,10 @@
     display: flex;
     align-items: center;
 }
+
+span{
+    color: rgb(190, 57, 57);
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+}
