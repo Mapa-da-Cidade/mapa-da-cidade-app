@@ -3,14 +3,19 @@
         <img [src]="report.icon">
         <h1>{{report.title}}</h1>
     </div>
-    <form [formGroup]="form" class="d-flex flex-column justify-content-center">
-        <ion-card class="image-card">
-            <ion-card-content>
-            </ion-card-content>
-        </ion-card>
-        <label for="description">Descrição</label>
-        <textarea name="description" id="description" cols="40" rows="5" formControlName="description"></textarea>
-    </form>
+    <ion-card-content>
+        <form [formGroup]="form" class="d-flex flex-column justify-content-center">
+            <ion-card class="image-card d-flex flex-column justify-content-center align-items-center" (click)="captureImage()">
+                <div class="d-flex flex-column align-items-center" *ngIf="!form.controls.photo.value">
+                    <ion-icon size="large" name="camera-outline"></ion-icon>
+                    <span>Tirar foto</span>
+                </div>
+                <ion-img [src]="form.controls.photo.value.webPath"></ion-img>
+            </ion-card>
+            <label for="description">Descrição</label>
+            <textarea name="description" id="description" cols="40" rows="5" formControlName="description"></textarea>
+        </form>
+    </ion-card-content>
     <div class="d-flex justify-content-between">
         <ion-button color="danger" (click)="closeModal()">Cancelar</ion-button>
         <ion-button color="success" (click)="addReport()">Enviar</ion-button>

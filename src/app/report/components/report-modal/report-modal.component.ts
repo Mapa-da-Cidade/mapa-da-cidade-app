@@ -1,8 +1,9 @@
+import { PhotoService } from './../../../shared/services/photo.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Report } from '../../models/report';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-report-modal',
@@ -19,6 +20,7 @@ export class ReportModalComponent implements OnInit {
     public modalController: ModalController,
     public firestore: AngularFirestore,
     public formBuilder: FormBuilder,
+    public photoService: PhotoService,
   ) { }
 
   ngOnInit() {
@@ -28,7 +30,8 @@ export class ReportModalComponent implements OnInit {
   private buildForm() {
     this.form = this.formBuilder.group({
       type: [this.report.type, Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      photo: ['', Validators.required]
     });
   }
 
@@ -37,16 +40,21 @@ export class ReportModalComponent implements OnInit {
   }
 
   captureImage() {
-    // this.photoService.takePhoto().then(response => {
-    //   this.photo = response;
-    //   this.form.controls.photo.setValue(this.photo);
-    // });
+    this.photoService.takePhoto().then(response => {
+      this.form.controls.photo.setValue(response);
+    });
   }
 
   addReport() {
     console.log(this.form.value)
+    this.uploadFile(this.form.value.photo.webPath)
     // const reports = this.firestore.collection('reports');
     // reports.add({ teste: 'sera que foi?' });
+  }
+
+  uploadFile(path) {
+    // const filePath = path;
+    // const task = this.storage.upload(filePath, null);
   }
 
 }
