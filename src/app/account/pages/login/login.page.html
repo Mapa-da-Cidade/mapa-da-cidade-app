@@ -1,11 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-      <ion-title>
-          Login
-      </ion-title>
+    <ion-title>
+      Login
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <div class="flex">
+
+    <div class="title"> 
+      <h3>SEJA BEM VINDO!</h3>
+      <h6>Realize login para continuar</h6>
+    </div>
+
+    <div class="form">
+      <ion-item>
+        <ion-label position="floating">Usuário</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="button">
+      <ion-button expand="block">Entrar</ion-button>
+      <p class="text-center">Não possui uma conta? <a routerLink="/">Cadastre-se</a></p>
+    </div>
+
+  </div>
 
 </ion-content>
