@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Report } from '../../models/report';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-report-modal',
@@ -11,13 +12,21 @@ export class ReportModalComponent implements OnInit {
 
   @Input() report: Report;
 
-  constructor(public modalController: ModalController) { }
+  constructor(
+    public modalController: ModalController,
+    public firestore: AngularFirestore
+  ) { }
 
   ngOnInit() {
   }
 
   closeModal() {
     this.modalController.dismiss();
+  }
+
+  addReport() {
+    const reports = this.firestore.collection('reports');
+    reports.add({ teste: 'sera que foi?' });
   }
 
 }
