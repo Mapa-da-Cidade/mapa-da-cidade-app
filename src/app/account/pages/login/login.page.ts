@@ -1,3 +1,5 @@
+import { LoadingService } from './../../../shared/services/loading.service';
+import { ToastService } from './../../../shared/services/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,7 +17,9 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private firebaseAuth: AngularFireAuth,
-    private navigate: NavController
+    private navigate: NavController,
+    private toastService: ToastService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -29,7 +33,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  submit() {
+  async submit() {
     this.form.markAllAsTouched();
 
     if (this.form.invalid)
@@ -38,12 +42,16 @@ export class LoginPage implements OnInit {
     let email = this.form.controls.email.value;
     let password = this.form.controls.password.value;
 
+    await this.loadingService.present();
     this.firebaseAuth.signInWithEmailAndPassword(email, password).then(
-      (data) => {
-        console.log(data);
+      () => {
+        this.loadingService.dismiss();
         this.navigate.navigateRoot('tabs');
       })
-      .catch(() => { });
+      .catch(() => {
+        this.loadingService.dismiss();
+        this.toastService.error('E-mail ou Senha inválidos');
+      });
   }
 
 }
