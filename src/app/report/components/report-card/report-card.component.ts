@@ -1,4 +1,7 @@
+import { Report } from './../../models/report';
+import { ReportModalComponent } from './../report-modal/report-modal.component';
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-report-card',
@@ -7,13 +10,22 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ReportCardComponent implements OnInit {
 
-  @Input() icon: string;
-  @Input() title: string;
-  @Input() description: string;
+  @Input() report: Report;
 
-  constructor() { }
+  constructor(public modalController: ModalController) { }
 
   ngOnInit() {
+  }
+
+  async openReportModal() {
+    const modal = await this.modalController.create({
+      component: ReportModalComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        'report': this.report,
+      }
+    });
+    return await modal.present();
   }
 
 }
