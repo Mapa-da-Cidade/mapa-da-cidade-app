@@ -1,13 +1,13 @@
-<ion-card class="d-flex align-items-center">
+<ion-card class="d-flex align-items-center p-2" (click)="openReportModal()">
     <div>
-        <ion-img [src]="icon"></ion-img>
+        <ion-img [src]="report.icon"></ion-img>
     </div>
     <div>
         <ion-card-header>
-            <ion-card-title>{{title}}</ion-card-title>
+            <ion-card-title>{{report.title}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            {{description}}
+            {{report.description}}
         </ion-card-content>
     </div>
 </ion-card>

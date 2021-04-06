@@ -1,16 +1,11 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-title>
-            Report
+            Reportar
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <app-report-card icon="../../assets/icons/tree-leaft.svg" title="Árvores em risco" description="Sinalizar uma árvore que precisa de poda"></app-report-card>
-    <app-report-card title="Árvores em risco" description="Sinalizar pontos de enchente"></app-report-card>
-    <app-report-card title="Roubo / Furto" description="Sinalizar áreas com alto índice de roubos e furtos">
-    </app-report-card>
-    <app-report-card title="Vias irregulares" description="Sinalizar ruas com buracos"></app-report-card>
-    <app-report-card title="Falta de Iluminação" description="Áreas sem iluminação"></app-report-card>
+    <app-report-card *ngFor="let report of reports" [report]="report"></app-report-card>
 </ion-content>
