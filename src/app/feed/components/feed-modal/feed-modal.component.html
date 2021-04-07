@@ -8,12 +8,25 @@
 
 <ion-content [fullscreen]="true">
 
-  <h4>{{report.title}}</h4>
-  <h6>{{report.description}}</h6>
+  <div class="flex">
 
-  <div class="buttons">
-    <ion-button color="danger" (click)="dismiss()">Voltar</ion-button>
-    <ion-button color="success" (click)="toShare()">Encaminhar</ion-button>
+    <div class="card-flex">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="text-center title">{{report.type}}&nbsp;
+          </ion-card-title>
+          <!-- <ion-card-subtitle class="text-center">{{report.description}}</ion-card-subtitle>  -->
+        </ion-card-header>
+        <ion-card-content class="text-center">{{report.description}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+
+    <div class="buttons">
+      <ion-button color="danger" (click)="dismiss()">Voltar</ion-button>
+      <ion-button color="success">Encaminhar</ion-button>
+    </div>
   </div>
 
 </ion-content>

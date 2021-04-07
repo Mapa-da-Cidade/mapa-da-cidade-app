@@ -24,8 +24,6 @@ export class FeedModalComponent implements OnInit {
     });
   }
 
-  toShare(){
 
-  }
 
 }
