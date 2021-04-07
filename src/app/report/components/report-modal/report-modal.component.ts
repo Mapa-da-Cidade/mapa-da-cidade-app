@@ -71,6 +71,7 @@ export class ReportModalComponent implements OnInit {
               photo: imgUrl
             }
             reports.add(report);
+            this.modalController.dismiss();
           });
       });
   }
