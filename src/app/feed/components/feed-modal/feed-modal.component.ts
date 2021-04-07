@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Report } from './../../../report/models/report';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-feed-modal',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedModalComponent implements OnInit {
 
-  constructor() { }
+  @Input() report: Report;
+
+  constructor(
+    private modalController: ModalController,
+  ) { }
 
   ngOnInit() {
+  }
+
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+  }
+
+  toShare(){
+
   }
 
 }

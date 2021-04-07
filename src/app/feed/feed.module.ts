@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FeedPage } from './feed.page';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { FeedPageRoutingModule } from './feed-routing.module';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { FeedPageRoutingModule } from './feed-routing.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    ExploreContainerComponentModule,
     FeedPageRoutingModule
   ],
   declarations: [FeedPage, FeedCardComponent, FeedModalComponent]
