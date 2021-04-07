@@ -7,7 +7,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReportPage } from './report.page';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { ReportPageRoutingModule } from './report-routing.module';
 
@@ -15,7 +14,6 @@ import { ReportPageRoutingModule } from './report-routing.module';
   imports: [
     IonicModule,
     CommonModule,
-    ExploreContainerComponentModule,
     RouterModule.forChild([{ path: '', component: ReportPage }]),
     ReportPageRoutingModule,
     FormsModule,

@@ -1,3 +1,19 @@
-<p>
-  feed-modal works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Feed
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <h4>{{report.title}}</h4>
+  <h6>{{report.description}}</h6>
+
+  <div class="buttons">
+    <ion-button color="danger" (click)="dismiss()">Voltar</ion-button>
+    <ion-button color="success" (click)="toShare()">Encaminhar</ion-button>
+  </div>
+
+</ion-content>
