@@ -1,9 +1,10 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { PhotoService } from './../../../shared/services/photo.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Report } from '../../models/report';
-import { AngularFirestore, } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-report-modal',
@@ -21,6 +22,7 @@ export class ReportModalComponent implements OnInit {
     public firestore: AngularFirestore,
     public formBuilder: FormBuilder,
     public photoService: PhotoService,
+    private storage: AngularFireStorage
   ) { }
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class ReportModalComponent implements OnInit {
   }
 
   uploadFile(path) {
-    // const filePath = path;
+    const filePath = path;
     // const task = this.storage.upload(filePath, null);
   }
 

@@ -1,3 +1,4 @@
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { ReportModalComponent } from './components/report-modal/report-modal.component';
 import { ReportCardComponent } from './components/report-card/report-card.component';
 import { IonicModule } from '@ionic/angular';
@@ -18,7 +19,8 @@ import { ReportPageRoutingModule } from './report-routing.module';
     RouterModule.forChild([{ path: '', component: ReportPage }]),
     ReportPageRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule
   ],
   declarations: [ReportPage, ReportCardComponent, ReportModalComponent]
 })
