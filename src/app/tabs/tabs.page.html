@@ -1,4 +1,29 @@
 <ion-tabs>
+    <ion-menu side="start" content-id="main-content">
+        <ion-header>
+            <ion-toolbar translucent>
+                <ion-title>Menu</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <ion-item routerLink="/feed">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <ion-label>Perfil</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+
+    <div class="ion-page" id="main-content">
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-menu-button></ion-menu-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+    </div>
 
     <ion-tab-bar slot="bottom">
         <ion-tab-button tab="feed">
@@ -16,5 +41,4 @@
             <ion-label>Reportar</ion-label>
         </ion-tab-button>
     </ion-tab-bar>
-
 </ion-tabs>
