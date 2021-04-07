@@ -52,8 +52,6 @@ export class ReportModalComponent implements OnInit {
   addReport() {
     console.log(this.form.value)
     this.uploadFile(this.form.value.photo.base64String)
-    // const reports = this.firestore.collection('reports');
-    // reports.add({ teste: 'sera que foi?' });
   }
 
   uploadFile(path) {
@@ -67,11 +65,12 @@ export class ReportModalComponent implements OnInit {
         const ref = this.storage.ref(data.metadata.fullPath);
         ref.getDownloadURL().subscribe(
           (imgUrl) => {
-            console.log(imgUrl);
-            // this.post.image = imgUrl;
-            // this.db.collection('posts').add(this.post);
-            // localStorage.removeItem('devgram.post');
-            // this.navCtrl.navigateBack("/home");
+            const reports = this.firestore.collection('reports');
+            const report = {
+              ...this.form.value,
+              photo: imgUrl
+            }
+            reports.add(report);
           });
       });
   }

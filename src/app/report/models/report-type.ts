@@ -1,7 +1,7 @@
 export enum ReportType {
-  TreeAtRisk = 0,
-  Flooding = 1,
-  Theft = 2,
-  IrregularRoads = 3,
-  LackOfLighting = 4
+  TreeAtRisk = "Árvore em Risco",
+  Flooding = "Área de Alagamento",
+  Theft = "Roubo / Furto",
+  IrregularRoads = "Vias Irregulates",
+  LackOfLighting = "Falta de Iluminação"
 }
