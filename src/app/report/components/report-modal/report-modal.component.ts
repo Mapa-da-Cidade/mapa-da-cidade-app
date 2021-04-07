@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Report } from '../../models/report';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-report-modal',
@@ -16,6 +16,8 @@ export class ReportModalComponent implements OnInit {
   @Input() report: Report;
 
   form: FormGroup;
+  public task: AngularFireUploadTask;
+  public progress: any;
 
   constructor(
     public modalController: ModalController,
@@ -49,14 +51,29 @@ export class ReportModalComponent implements OnInit {
 
   addReport() {
     console.log(this.form.value)
-    this.uploadFile(this.form.value.photo.webPath)
+    this.uploadFile(this.form.value.photo.base64String)
     // const reports = this.firestore.collection('reports');
     // reports.add({ teste: 'sera que foi?' });
   }
 
   uploadFile(path) {
-    const filePath = path;
-    // const task = this.storage.upload(filePath, null);
+    const filePath = `post_${new Date().getTime()}.jpg`;
+
+    this.task = this.storage.ref(filePath).putString(path, 'data_url');
+    this.progress = this.task.percentageChanges();
+
+    this.task.then(
+      (data) => {
+        const ref = this.storage.ref(data.metadata.fullPath);
+        ref.getDownloadURL().subscribe(
+          (imgUrl) => {
+            console.log(imgUrl);
+            // this.post.image = imgUrl;
+            // this.db.collection('posts').add(this.post);
+            // localStorage.removeItem('devgram.post');
+            // this.navCtrl.navigateBack("/home");
+          });
+      });
   }
 
 }

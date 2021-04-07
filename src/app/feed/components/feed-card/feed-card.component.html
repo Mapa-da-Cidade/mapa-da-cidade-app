@@ -1,3 +1,9 @@
-<p>
-  feed-card works!
-</p>
+<ion-card (click)="openReport()">
+  <ion-card-header>
+    <ion-card-title class="text-center title">{{report.title}}&nbsp;
+    </ion-card-title>
+    <!-- <ion-card-subtitle class="text-center">{{report.description}}</ion-card-subtitle> -->
+  </ion-card-header>
+  <ion-card-content class="text-center">{{report.description}}
+  </ion-card-content>
+</ion-card>
