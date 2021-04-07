@@ -18,7 +18,6 @@ export class ReportCardComponent implements OnInit {
   }
 
   async openReportModal() {
-    console.log('oi')
     const modal = await this.modalController.create({
       component: ReportModalComponent,
       cssClass: 'my-custom-class',
