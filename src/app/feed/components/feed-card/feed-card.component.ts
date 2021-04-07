@@ -10,7 +10,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class FeedCardComponent implements OnInit {
 
-  @Input() report: Report;
+  @Input() report: any;
 
   constructor(private modalController: ModalController) { }
 

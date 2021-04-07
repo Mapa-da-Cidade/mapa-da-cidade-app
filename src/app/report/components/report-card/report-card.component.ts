@@ -10,7 +10,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class ReportCardComponent implements OnInit {
 
-  @Input() report: Report;
+  @Input() report: any;
 
   constructor(public modalController: ModalController) { }
 
@@ -18,6 +18,7 @@ export class ReportCardComponent implements OnInit {
   }
 
   async openReportModal() {
+    console.log('oi')
     const modal = await this.modalController.create({
       component: ReportModalComponent,
       cssClass: 'my-custom-class',
