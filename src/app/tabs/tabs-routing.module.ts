@@ -20,10 +20,14 @@ const routes: Routes = [
         loadChildren: () => import('../report/report.module').then(m => m.ReportPageModule)
       },
       {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/feed',
         pathMatch: 'full'
-      }
+      },
     ]
   },
 ];
