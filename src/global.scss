@@ -29,3 +29,23 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 @import "bootstrap";
+
+.marker-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    padding: 10px;
+    max-width: 50%;
+  }
+  small {
+    font-size: 13px;
+    font-weight: bold;
+  }
+  label {
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+  }
+}

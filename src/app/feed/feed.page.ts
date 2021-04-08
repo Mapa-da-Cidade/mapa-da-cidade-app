@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {Component, OnInit} from '@angular/core';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {ReportService} from '../shared/services/report.service';
 
 @Component({
   selector: 'app-feed',
@@ -10,16 +11,18 @@ export class FeedPage implements OnInit {
 
   reports: any[] = [];
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private reportService: ReportService) {
+  }
 
   ngOnInit() {
     this.getReports();
   }
 
   getReports() {
-    this.db.collection('reports').valueChanges().subscribe((data) => {
-      this.reports = data;
+    this.reportService.getReports().subscribe(reports => {
+      this.reports = reports;
     });
   }
+
 
 }

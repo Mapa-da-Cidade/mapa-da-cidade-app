@@ -1,4 +1,4 @@
-import { Report } from './../../models/report';
+import { ReportModel } from '../../../shared/models/report/report.model';
 import { ReportModalComponent } from './../report-modal/report-modal.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';

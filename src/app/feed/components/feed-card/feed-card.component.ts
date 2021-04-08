@@ -1,5 +1,5 @@
 import { FeedModalComponent } from './../feed-modal/feed-modal.component';
-import { Report } from './../../../report/models/report';
+import { ReportModel } from '../../../shared/models/report/report.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 

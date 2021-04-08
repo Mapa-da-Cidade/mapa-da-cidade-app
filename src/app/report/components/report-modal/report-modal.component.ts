@@ -3,7 +3,7 @@ import { PhotoService } from './../../../shared/services/photo.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Report } from '../../models/report';
+import { ReportModel } from '../../../shared/models/report/report.model';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 
 @Component({
@@ -13,7 +13,7 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 })
 export class ReportModalComponent implements OnInit {
 
-  @Input() report: Report;
+  @Input() report: ReportModel;
 
   form: FormGroup;
   public task: AngularFireUploadTask;

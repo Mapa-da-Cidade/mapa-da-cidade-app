@@ -1,5 +1,7 @@
 {
   "name": "mapaDaCidade",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
