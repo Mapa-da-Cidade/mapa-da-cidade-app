@@ -7,6 +7,7 @@ import {ReportStatus} from '../shared/models/report/report-status';
 import {ReportLocation} from '../shared/models/report/report-location';
 import {getMarkerColorByType} from './marker';
 import {mapStyle} from './map-style';
+import {ReportService} from '../shared/services/report.service';
 
 @Component({
   selector: 'app-map',
@@ -19,7 +20,7 @@ export class MapPage implements OnInit {
 
   map: GoogleMap;
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private reportService: ReportService) {
   }
 
   async ngOnInit() {
@@ -100,28 +101,30 @@ export class MapPage implements OnInit {
   }
 
   generateMarkers() {
-    this.getMockedReports().map(mockedReport => {
-      return this.map.addMarkerSync({
-        title: '',
-        icon: {
-          url: mockedReport.icon,
-          size: {
-            width: 45,
-            height: 45
-          }
-        },
-        snippet: `
+    this.reportService.getReports().subscribe((reports) => {
+      reports.map(mockedReport => {
+        return this.map.addMarkerSync({
+          title: '',
+          icon: {
+            url: mockedReport.icon,
+            size: {
+              width: 45,
+              height: 45
+            }
+          },
+          snippet: `
                 <div class="marker-container">
                   <img src="${mockedReport.photo}">
                   <h4 class="text-uppercase">${mockedReport.title}</h4>
                   <small class="text-uppercase">Status</small>
                   <label style="font-size: 15px">${mockedReport.status}</label>
                 </div>`,
-        animation: 'DROP',
-        position: {
-          lat: mockedReport.location.latitude,
-          lng: mockedReport.location.longitude
-        }
+          animation: 'DROP',
+          position: {
+            lat: mockedReport.location.latitude,
+            lng: mockedReport.location.longitude
+          }
+        });
       });
     });
   }
