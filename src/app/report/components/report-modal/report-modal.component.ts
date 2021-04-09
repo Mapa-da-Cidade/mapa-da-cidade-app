@@ -1,10 +1,12 @@
+import { ReportLocation } from './../../../shared/models/report/report-location';
+import { ReportModel } from './../../../shared/models/report/report.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { PhotoService } from './../../../shared/services/photo.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ReportModel } from '../../../shared/models/report/report.model';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-report-modal',
@@ -24,7 +26,8 @@ export class ReportModalComponent implements OnInit {
     public firestore: AngularFirestore,
     public formBuilder: FormBuilder,
     public photoService: PhotoService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private geolocation: Geolocation
   ) { }
 
   ngOnInit() {
@@ -49,31 +52,34 @@ export class ReportModalComponent implements OnInit {
     });
   }
 
-  addReport() {
-    console.log(this.form.value)
-    this.uploadFile(this.form.value.photo.base64String)
+  async addReport() {
+    // console.log(this.form.value)
+
+    const location = await this.geolocation.getCurrentPosition();
+    const photo = await this.uploadFile(this.form.value.photo.base64String)
+
+    this.report.addData(
+      // new ReportLocation(location.coords.latitude, location.coords.longitude),
+      new ReportLocation(0, 0),
+      photo,
+      'falta colocar o id usuario aqui'
+    )
+
+    console.log(this.report)
+    const reports = this.firestore.collection('reports');
+    reports.add(this.report);
+    this.modalController.dismiss();
   }
 
-  uploadFile(path) {
+  async uploadFile(path) {
     const filePath = `post_${new Date().getTime()}.jpg`;
 
     this.task = this.storage.ref(filePath).putString(path, 'data_url');
     this.progress = this.task.percentageChanges();
 
-    this.task.then(
-      (data) => {
-        const ref = this.storage.ref(data.metadata.fullPath);
-        ref.getDownloadURL().subscribe(
-          (imgUrl) => {
-            const reports = this.firestore.collection('reports');
-            const report = {
-              ...this.form.value,
-              photo: imgUrl
-            }
-            reports.add(report);
-            this.modalController.dismiss();
-          });
-      });
+    const data = await this.task;
+    const ref = this.storage.ref(data.metadata.fullPath);
+    return ref.getDownloadURL().toPromise();
   }
 
 }

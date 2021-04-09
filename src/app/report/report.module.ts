@@ -1,3 +1,4 @@
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { ReportModalComponent } from './components/report-modal/report-modal.component';
 import { ReportCardComponent } from './components/report-card/report-card.component';
@@ -20,6 +21,9 @@ import { ReportPageRoutingModule } from './report-routing.module';
     ReactiveFormsModule,
     AngularFireStorageModule
   ],
-  declarations: [ReportPage, ReportCardComponent, ReportModalComponent]
+  declarations: [ReportPage, ReportCardComponent, ReportModalComponent],
+  providers: [
+    Geolocation
+  ]
 })
 export class ReportPageModule { }
