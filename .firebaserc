@@ -1,14 +1,5 @@
 {
   "projects": {
     "default": "mapa-da-cidade-app"
-  },
-  "targets": {
-    "devgram-9529f": {
-      "hosting": {
-        "app": [
-          "devgram-9529f"
-        ]
-      }
-    }
   }
 }

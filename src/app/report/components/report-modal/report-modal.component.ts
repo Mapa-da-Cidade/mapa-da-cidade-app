@@ -1,3 +1,4 @@
+import { LoadingService } from './../../../shared/services/loading.service';
 import { ReportLocation } from './../../../shared/models/report/report-location';
 import { ReportModel } from './../../../shared/models/report/report.model';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -27,7 +28,8 @@ export class ReportModalComponent implements OnInit {
     public formBuilder: FormBuilder,
     public photoService: PhotoService,
     private storage: AngularFireStorage,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,7 @@ export class ReportModalComponent implements OnInit {
   }
 
   async addReport() {
+    await this.loadingService.present();
     const location = await this.geolocation.getCurrentPosition();
     const photo = await this.uploadFile(this.form.value.photo.base64String)
 
@@ -64,6 +67,7 @@ export class ReportModalComponent implements OnInit {
 
     const reports = this.firestore.collection('reports');
     reports.add(JSON.parse(JSON.stringify(this.report)));
+    this.loadingService.dismiss();
     this.modalController.dismiss();
   }
 
