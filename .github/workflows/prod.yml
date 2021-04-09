@@ -1,23 +1,25 @@
-name: Prod
-
+name: Build Angular App and Deploy on Firebase
 on:
   push:
     branches:
       - main
 
 jobs:
-  build-prod:
-    name: Build and Deploy Prod
+  build:
+    name: Build & Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Install Ionic
-        run: npm install -g ionic
-
-      - name: Install packages
-        run: npm i
-
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        run: npm install
       - name: Build
-        run: ionic cordova build browser -l
-
-      - name: Deploy
-        run: firebase deploy -- only hosting
+        run: npm run build
+      - name: Run Tests
+        run: npm run test
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@v1.5.0
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
