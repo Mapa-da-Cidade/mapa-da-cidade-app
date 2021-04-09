@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  uild-einstein:
+  build-prod:
     name: Build and Deploy Prod
     runs-on: ubuntu-latest
     steps:
