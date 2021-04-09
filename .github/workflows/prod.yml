@@ -10,7 +10,7 @@ jobs:
     name: Build and Deploy Prod
     runs-on: ubuntu-latest
     steps:
-      -name: Install packages
+      - name: Install packages
         run: npm i
 
       - name: Build
