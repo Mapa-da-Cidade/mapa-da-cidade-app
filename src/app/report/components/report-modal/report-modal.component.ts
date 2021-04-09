@@ -53,21 +53,17 @@ export class ReportModalComponent implements OnInit {
   }
 
   async addReport() {
-    // console.log(this.form.value)
-
     const location = await this.geolocation.getCurrentPosition();
     const photo = await this.uploadFile(this.form.value.photo.base64String)
 
     this.report.addData(
-      // new ReportLocation(location.coords.latitude, location.coords.longitude),
-      new ReportLocation(0, 0),
+      new ReportLocation(location.coords.latitude, location.coords.longitude),
       photo,
       'falta colocar o id usuario aqui'
     )
 
-    console.log(this.report)
     const reports = this.firestore.collection('reports');
-    reports.add(this.report);
+    reports.add(JSON.parse(JSON.stringify(this.report)));
     this.modalController.dismiss();
   }
 
