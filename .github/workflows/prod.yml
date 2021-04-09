@@ -2,10 +2,13 @@ name: Prod
 
 on:
   push:
-    branches: [main]
+    branches:
+      -main
 
 jobs:
     steps:
+      - uses: actions/checkout@v1
+
       - name: Build
         run: ionic cordova build browser -l
 
