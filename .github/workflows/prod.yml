@@ -1,0 +1,13 @@
+name: Prod
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+    steps:
+      - name: Build
+        run: ionic cordova build browser -l
+
+      - name: Deploy
+        run: firebase deploy -- only hosting
