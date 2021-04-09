@@ -10,7 +10,8 @@ jobs:
     name: Build and Deploy Prod
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      -name: Install packages
+        run: npm i
 
       - name: Build
         run: ionic cordova build browser -l
