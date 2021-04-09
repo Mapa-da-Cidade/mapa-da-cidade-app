@@ -1,13 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { Environment, GoogleMap, GoogleMapOptions, GoogleMaps } from '@ionic-native/google-maps';
-import { ReportModel } from '../shared/models/report/report.model';
-import { ReportType } from '../shared/models/report/report-type';
-import { ReportStatus } from '../shared/models/report/report-status';
-import { ReportLocation } from '../shared/models/report/report-location';
-import { getMarkerColorByType } from './marker';
-import { mapStyle } from './map-style';
-import { ReportService } from '../shared/services/report.service';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Platform} from '@ionic/angular';
+import {Environment, GoogleMap, GoogleMapOptions, GoogleMaps} from '@ionic-native/google-maps';
+import {mapStyle} from './map-style';
+import {ReportService} from '../shared/services/report.service';
 
 @Component({
   selector: 'app-map',
@@ -28,6 +23,7 @@ export class MapPage implements OnInit {
 
     await this.loadMap();
   }
+
   loadMap() {
 
     Environment.setEnv({
@@ -58,28 +54,33 @@ export class MapPage implements OnInit {
 
   generateMarkers() {
     this.reportService.getReports().subscribe((reports) => {
-      reports.map(mockedReport => {
-        return this.map.addMarkerSync({
-          title: '',
-          icon: {
-            url: mockedReport.icon,
-            size: {
-              width: 45,
-              height: 45
-            }
-          },
-          snippet: `
+      console.log(reports);
+      this.map.clear().then(() => {
+        reports.map(mockedReport => {
+          return {
+            title: '',
+            icon: {
+              url: mockedReport.icon,
+              size: {
+                width: 45,
+                height: 45
+              }
+            },
+            snippet: `
                 <div class="marker-container">
                   <img src="${mockedReport.photo}">
                   <h4 class="text-uppercase">${mockedReport.title}</h4>
                   <small class="text-uppercase">Status</small>
                   <label style="font-size: 15px">${mockedReport.status}</label>
                 </div>`,
-          animation: 'DROP',
-          position: {
-            lat: mockedReport.location.latitude,
-            lng: mockedReport.location.longitude
-          }
+            animation: 'DROP',
+            position: {
+              lat: mockedReport.location.latitude,
+              lng: mockedReport.location.longitude
+            }
+          };
+        }).forEach(marker => {
+          this.map.addMarkerSync(marker);
         });
       });
     });
