@@ -103,7 +103,13 @@ export class MapPage implements OnInit {
     this.getMockedReports().map(mockedReport => {
       return this.map.addMarkerSync({
         title: '',
-        icon: getMarkerColorByType(mockedReport.type),
+        icon: {
+          url: mockedReport.icon,
+          size: {
+            width: 45,
+            height: 45
+          }
+        },
         snippet: `
                 <div class="marker-container">
                   <img src="${mockedReport.photo}">
