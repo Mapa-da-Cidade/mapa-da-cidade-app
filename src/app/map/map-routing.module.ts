@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MapPage } from './map.page';
+import {Geolocation} from "@ionic-native/geolocation/ngx";
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    Geolocation
+  ]
 })
 export class MapPageRoutingModule { }
