@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { User } from 'src/app/shared/models/user/user.model';
+import { Security } from 'src/app/shared/security/token.security';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
@@ -46,8 +48,9 @@ export class RegisterPage implements OnInit {
 
     await this.loadingService.present();
     this.firebaseAuth.createUserWithEmailAndPassword(email, password).then(
-      () => {
+      (response) => {
         this.loadingService.dismiss();
+        Security.set(new User(response.user.uid, response.user.email), response.user.refreshToken);
         this.navigate.navigateRoot('tabs');
       })
       .catch(() => {

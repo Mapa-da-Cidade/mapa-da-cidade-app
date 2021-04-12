@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FeedPage } from './feed.page';
 import { FeedPageRoutingModule } from './feed-routing.module';
+import { FeedPipe } from '../shared/pipes/feed.pipe';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { FeedPageRoutingModule } from './feed-routing.module';
     FormsModule,
     FeedPageRoutingModule
   ],
-  declarations: [FeedPage, FeedCardComponent, FeedModalComponent]
+  declarations: [FeedPage, FeedCardComponent, FeedModalComponent, FeedPipe]
 })
 export class FeedPageModule { }

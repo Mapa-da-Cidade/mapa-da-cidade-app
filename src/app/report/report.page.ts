@@ -1,7 +1,9 @@
-import {ReportType} from '../shared/models/report/report-type';
-import {ReportModel} from '../shared/models/report/report.model';
-import {Component} from '@angular/core';
-import {ReportStatus} from '../shared/models/report/report-status';
+import { ReportType } from '../shared/models/report/report-type';
+import { ReportModel } from '../shared/models/report/report.model';
+import { Component } from '@angular/core';
+import { ReportStatus } from '../shared/models/report/report-status';
+import { NavController } from '@ionic/angular';
+import { Security } from '../shared/security/token.security';
 
 @Component({
     selector: 'app-report',
@@ -12,7 +14,7 @@ export class ReportPage {
 
     public reports: Array<ReportModel>;
 
-    constructor() {
+    constructor(private navCtrl: NavController) {
         this.reports = new Array<ReportModel>(
             new ReportModel(
                 ' /assets/images/tree-leaf.svg',
@@ -48,6 +50,12 @@ export class ReportPage {
                 ReportStatus.Unanswered
             ),
         );
+    }
+
+
+    logout() {
+        this.navCtrl.navigateRoot('/');
+        Security.clear();
     }
 
 }
