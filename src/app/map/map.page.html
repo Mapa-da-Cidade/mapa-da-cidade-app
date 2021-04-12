@@ -6,22 +6,22 @@
             <ion-icon name="search-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="top">
-            <ion-fab-button>
+            <ion-fab-button (click)="filter(null)">
                 Todos
             </ion-fab-button>
-            <ion-fab-button>
+            <ion-fab-button (click)="filter(ReportType.Flooding)">
                 <img src="assets/images/boat.svg" />
             </ion-fab-button>
-            <ion-fab-button>
+            <ion-fab-button (click)="filter(ReportType.IrregularRoads)">
                 <img src="assets/images/flag.svg" />
             </ion-fab-button>
-            <ion-fab-button>
+            <ion-fab-button (click)="filter(ReportType.LackOfLighting)">
                 <img src="assets/images/flashlight.svg" />
             </ion-fab-button>
-            <ion-fab-button>
+            <ion-fab-button (click)="filter(ReportType.Theft)">
                 <img src="assets/images/sad.svg" />
             </ion-fab-button>
-            <ion-fab-button>
+            <ion-fab-button (click)="filter(ReportType.TreeAtRisk)">
                 <img src="assets/images/tree-leaf.svg" />
             </ion-fab-button>
         </ion-fab-list>
