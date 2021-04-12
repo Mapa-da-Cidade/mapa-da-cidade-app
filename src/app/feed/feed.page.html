@@ -8,8 +8,8 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  <ion-searchbar placeholder="Buscar" [(ngModel)]="filter"></ion-searchbar>
 
-  <app-feed-card *ngFor="let report of reports" [report]="report"></app-feed-card>
+  <app-feed-card *ngFor="let report of reports | feedPipe: filter" [report]="report"></app-feed-card>
 
 </ion-content>

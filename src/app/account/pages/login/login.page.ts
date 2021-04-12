@@ -1,9 +1,11 @@
+import { Security } from './../../../shared/security/token.security';
 import { LoadingService } from './../../../shared/services/loading.service';
 import { ToastService } from './../../../shared/services/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { User } from 'src/app/shared/models/user/user.model';
 
 @Component({
   selector: 'app-login',
@@ -44,8 +46,9 @@ export class LoginPage implements OnInit {
 
     await this.loadingService.present();
     this.firebaseAuth.signInWithEmailAndPassword(email, password).then(
-      () => {
+      (response) => {
         this.loadingService.dismiss();
+        Security.set(new User(response.user.uid, response.user.email), response.user.refreshToken);
         this.navigate.navigateRoot('tabs');
       })
       .catch(() => {
