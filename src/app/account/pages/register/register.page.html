@@ -1,60 +1,75 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Register
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Cadastro
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <div class="flex">
+    <div class="flex">
 
-    <div class="title">
-      <h3>SEJA BEM VINDO!</h3>
-      <h6>Realize seu cadastro</h6>
+        <div class="title">
+            <div class="title-message text-white">
+                <h3 style="font-weight: bold">A melhor forma de reportar problemas urbanos!</h3>
+                <h6>Cadastre-se abaixo</h6>
+            </div>
+        </div>
+
+        <div class="form">
+            <form [formGroup]="form">
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label position="floating">Usuário</ion-label>
+                            <ion-input formControlName="user"></ion-input>
+                        </ion-item>
+                        <span class="invalid" *ngIf="form.controls.user.invalid && form.controls.user.touched">
+                            Campo obrigatório
+                        </span>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label position="floating">E-mail</ion-label>
+                            <ion-input formControlName="email"></ion-input>
+                        </ion-item>
+                        <span class="invalid" *ngIf="form.controls.email.invalid && form.controls.email.touched">
+                            Campo obrigatório
+                        </span>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label position="floating">Telefone</ion-label>
+                            <ion-input formControlName="cellPhone"></ion-input>
+                        </ion-item>
+                        <span class="invalid"
+                              *ngIf="form.controls.cellPhone.invalid && form.controls.cellPhone.touched">
+                            Campo obrigatório
+                        </span>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label position="floating">Senha</ion-label>
+                            <ion-input type="password" formControlName="password"></ion-input>
+                        </ion-item>
+                        <span class="invalid" *ngIf="form.controls.password.invalid && form.controls.password.touched">
+                            Campo obrigatório
+                        </span>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="ion-margin-top">
+                    <ion-col size="12">
+                        <div class="button">
+                            <ion-button expand="block" (click)="submit()">Cadastrar</ion-button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </form>
+        </div>
     </div>
-
-    <div class="form">
-      <form [formGroup]="form">
-
-        <!-- image -->
-
-        <ion-item>
-          <ion-label position="floating">Usuário</ion-label>
-          <ion-input formControlName="user"></ion-input>
-        </ion-item>
-        <span class="invalid" *ngIf="form.controls.user.invalid && form.controls.user.touched">
-          Campo obrigatório
-        </span>
-        <ion-item>
-          <ion-label position="floating">E-mail</ion-label>
-          <ion-input formControlName="email"></ion-input>
-        </ion-item>
-        <span class="invalid" *ngIf="form.controls.email.invalid && form.controls.email.touched">
-          Campo obrigatório
-        </span>
-        <ion-item>
-          <ion-label position="floating">Telefone</ion-label>
-          <ion-input formControlName="cellPhone"></ion-input>
-        </ion-item>
-        <span class="invalid" *ngIf="form.controls.cellPhone.invalid && form.controls.cellPhone.touched">
-          Campo obrigatório
-        </span>
-        <ion-item>
-          <ion-label position="floating">Senha</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <span class="invalid" *ngIf="form.controls.password.invalid && form.controls.password.touched">
-          Campo obrigatório
-        </span>
-      </form>
-    </div>
-
-    <div class="button">
-      <ion-button expand="block" (click)="submit()">Cadastrar</ion-button>
-    </div>
-
-  </div>
 
 </ion-content>

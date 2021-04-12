@@ -15,7 +15,7 @@ export class ReportPage {
     constructor() {
         this.reports = new Array<ReportModel>(
             new ReportModel(
-                'assets/images/tree-leaf.svg',
+                ' /assets/images/tree-leaf.svg',
                 'Árvores em risco',
                 'Sinalizar uma árvore que precisa de poda',
                 ReportType.TreeAtRisk,

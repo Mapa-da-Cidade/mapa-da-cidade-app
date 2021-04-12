@@ -1,0 +1,48 @@
+.flex {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.login-page {
+    background-color: #131313;
+}
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 2;
+    justify-content: flex-start;
+    background-color: #874fff;
+    border-radius: 0 0  85% 0;
+    color: #000000;
+    @media(max-width: 340px) {
+        border-radius: 0 0 60% 0;
+    }
+    .logo {
+        flex: 0.7;
+        width: 16em;
+        margin-left: 1.5em;
+    }
+    .title-message {
+        padding-top: 1em;
+        margin-left: 1.5em;
+        flex: 0.6;
+    }
+}
+
+.form {
+    flex: 2;
+    padding: 1em;
+}
+
+.button {
+    flex: 1;
+}
+
+span {
+    color: rgb(190, 57, 57);
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+}

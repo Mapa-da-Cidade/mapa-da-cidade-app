@@ -8,7 +8,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
-  styleUrls: ['./register.page.css']
+  styleUrls: ['./register.page.scss']
 })
 export class RegisterPage implements OnInit {
 

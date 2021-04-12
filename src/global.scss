@@ -35,9 +35,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: black ;
   img {
-    padding: 10px;
-    max-width: 50%;
+    width: 50%;
+    border-radius: 2em;
+    margin-bottom: 10px;
   }
   small {
     font-size: 13px;
@@ -48,4 +50,12 @@
     font-weight: bold;
     color: red;
   }
+}
+
+.searchbar-input {
+  background: #1e1e1e !important;
+}
+
+.tab-selected {
+  color: #19DE7F;
 }

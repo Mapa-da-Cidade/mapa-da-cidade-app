@@ -7,16 +7,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountRoutingModule } from './account-routing.module';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    AccountRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AngularFireAuthModule
-  ],
+    imports: [
+        IonicModule,
+        CommonModule,
+        AccountRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AngularFireAuthModule,
+        RouterModule
+    ],
   declarations: [LoginPage, RegisterPage, ResetPasswordPage]
 })
 export class AccountModule { }
