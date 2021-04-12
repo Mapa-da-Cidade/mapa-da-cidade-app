@@ -1,3 +1,8 @@
 .image-card {
     height: 200px;
 }
+
+
+ion-card {
+  margin: 0 0 2em;
+}

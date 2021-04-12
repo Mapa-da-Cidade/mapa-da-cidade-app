@@ -1,12 +1,13 @@
 import { ReportType } from './../shared/models/report/report-type';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import {ModalController, Platform} from '@ionic/angular';
 import { Environment, GoogleMap, GoogleMapOptions, GoogleMaps, GoogleMapsEvent } from '@ionic-native/google-maps';
 import { mapStyle } from './map-style';
 import { ReportService } from '../shared/services/report.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ReportModel } from '../shared/models/report/report.model';
 import * as moment from 'moment';
+import {FeedModalComponent} from '../feed/components/feed-modal/feed-modal.component';
 
 @Component({
   selector: 'app-map',
@@ -19,7 +20,7 @@ export class MapPage implements OnInit {
 
   map: GoogleMap;
 
-  ReportType = ReportType
+  ReportType = ReportType;
   selectedReportType: ReportType;
 
   filter(reportType: ReportType) {
@@ -28,8 +29,9 @@ export class MapPage implements OnInit {
   }
 
   constructor(private platform: Platform,
-    private reportService: ReportService,
-    private geolocation: Geolocation,
+              private reportService: ReportService,
+              private geolocation: Geolocation,
+              private modalController: ModalController
   ) {
     moment.locale('pt-BR');
     Environment.setEnv({
@@ -71,6 +73,7 @@ export class MapPage implements OnInit {
       this.map.clear().then(() => {
         reports.map(report => {
           return {
+            report,
             title: '',
             icon: {
               url: report.icon,
@@ -95,12 +98,24 @@ export class MapPage implements OnInit {
           };
         }).forEach(markerReport => {
           const createdMarker = this.map.addMarkerSync(markerReport);
-          createdMarker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-            // openReport(markerReport);
+          createdMarker.on(GoogleMapsEvent.INFO_CLICK).subscribe(() => {
+            this.openReport(markerReport.report);
           });
         });
       });
     });
+  }
+
+  async openReport(report: ReportModel) {
+    const modal = await this.modalController.create({
+      component: FeedModalComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        report
+      }
+    });
+
+    return await modal.present();
   }
 
 }
