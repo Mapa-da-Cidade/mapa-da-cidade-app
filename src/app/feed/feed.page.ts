@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Security } from '../shared/security/token.security';
 import { ReportService } from '../shared/services/report.service';
 
 @Component({
@@ -11,7 +13,10 @@ export class FeedPage implements OnInit {
   reports: any[] = [];
   filter: string = '';
 
-  constructor(private reportService: ReportService) {
+  constructor(
+    private reportService: ReportService,
+    private navCtrl: NavController
+  ) {
   }
 
   ngOnInit() {
@@ -24,5 +29,9 @@ export class FeedPage implements OnInit {
     });
   }
 
+  logout() {
+    this.navCtrl.navigateRoot('/');
+    Security.clear();
+  }
 
 }
