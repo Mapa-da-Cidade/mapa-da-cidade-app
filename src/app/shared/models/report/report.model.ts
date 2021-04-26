@@ -7,7 +7,7 @@ export class ReportModel {
   public photo: string;
   public createdAt: Date;
   public updatedAt: Date;
-  public creatorUserId: string;
+  public userId: string;
 
   constructor(
     public icon: string,
@@ -21,12 +21,12 @@ export class ReportModel {
   public addData(
     location?: ReportLocation,
     photo?: string,
-    creatorUserId?: string,
+    userId?: string,
   ) {
     this.location = location;
     this.photo = photo;
     this.createdAt = new Date();
     this.updatedAt = this.createdAt
-    this.creatorUserId = creatorUserId;
+    this.userId = userId;
   }
 }

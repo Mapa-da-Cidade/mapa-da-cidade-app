@@ -53,7 +53,12 @@ export class RegisterPage implements OnInit {
         Security.set(new User(response.user.uid, response.user.email), response.user.refreshToken);
         this.navigate.navigateRoot('tabs');
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.code === 'auth/weak-password') {
+          this.toastService.error('A senha deve contar pelo menos 6 caracteres');
+          return
+        }
+
         this.loadingService.dismiss();
         this.toastService.error('Ocorreu um erro interno');
       });

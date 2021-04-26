@@ -1,3 +1,4 @@
+import { Security } from './../../../shared/security/token.security';
 import { LoadingService } from './../../../shared/services/loading.service';
 import { ReportLocation } from './../../../shared/models/report/report-location';
 import { ReportModel } from './../../../shared/models/report/report.model';
@@ -62,7 +63,7 @@ export class ReportModalComponent implements OnInit {
     this.report.addData(
       new ReportLocation(location.coords.latitude, location.coords.longitude),
       photo,
-      'falta colocar o id usuario aqui'
+      Security.getUser().id
     )
 
     const reports = this.firestore.collection('reports');
