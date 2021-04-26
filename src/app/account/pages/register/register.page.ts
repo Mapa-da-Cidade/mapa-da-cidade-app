@@ -56,11 +56,18 @@ export class RegisterPage implements OnInit {
       .catch((error) => {
         if (error.code === 'auth/weak-password') {
           this.toastService.error('A senha deve contar pelo menos 6 caracteres');
+          this.loadingService.dismiss();
           return
         }
 
-        this.loadingService.dismiss();
+        if (error.code === 'auth/email-already-in-use') {
+          this.toastService.error('Usuário já cadastrado');
+          this.loadingService.dismiss();
+          return
+        }
+
         this.toastService.error('Ocorreu um erro interno');
+        this.loadingService.dismiss();
       });
   }
 
